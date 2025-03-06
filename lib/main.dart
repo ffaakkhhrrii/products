@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:products/features/presentation/bloc/products/products_bloc.dart';
-import 'package:products/features/presentation/bloc/products/products_event.dart';
-import 'package:products/features/presentation/pages/home/products_list.dart';
+import 'package:products/core/router/router_app.dart';
 import 'package:products/injection_app.dart';
 
 Future<void> main() async{
@@ -16,9 +13,9 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-          debugShowCheckedModeBanner: false,
-          home: ProductsList(),
-      );
+    return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
+      routerConfig: router,
+    );
   }
 }
