@@ -1,6 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:products/features/presentation/pages/add_product/add_product_page.dart';
 import 'package:products/features/presentation/pages/detail/product_detail.dart';
+import 'package:products/features/presentation/pages/favorite/favorite_list_page.dart';
 import 'package:products/features/presentation/pages/home/products_list.dart';
 
 final GoRouter router = GoRouter(
@@ -20,6 +21,10 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: '/post_product',
       builder: (context,state)=> AddProductPage()
+    ),
+    GoRoute(
+      path: '/favorite_product',
+      builder: (context,state) => const FavoriteListPage()
     )
   ]
 );

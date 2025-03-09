@@ -39,7 +39,6 @@ dependencies:
   equatable: ^2.0.7
   get_it: ^8.0.3
   intl: ^0.20.2
-  floor: ^1.5.0
   retrofit: ^4.4.2
   flutter_hooks: ^0.20.5
   cached_network_image: ^3.4.1
@@ -49,6 +48,10 @@ dependencies:
   go_router: ^14.8.1
   flutter_expandable_fab: ^2.3.0
   d_info: ^0.2.2
+  drift: ^2.26.0
+  sqlite3_flutter_libs: ^0.5.31
+  path_provider: ^2.1.5
+  analyzer: ^6.7.0
 
 dev_dependencies:
   flutter_test:
@@ -61,7 +64,6 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^4.0.0
   retrofit_generator: ^9.1.5
-  floor_generator: ^1.5.0
   build_runner: ^2.4.13
   json_serializable: ^6.9.0
 

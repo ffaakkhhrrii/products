@@ -32,8 +32,10 @@ class ProductsList extends StatelessWidget {
           ),
           FloatingActionButton.small(
             heroTag: null,
-            child: const Icon(Icons.search),
-            onPressed: () {},
+            child: const Icon(Icons.favorite),
+            onPressed: () {
+              
+            },
           ),
         ]),
         floatingActionButtonLocation: ExpandableFab.location,
