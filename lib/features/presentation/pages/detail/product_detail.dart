@@ -14,6 +14,15 @@ class ProductDetail extends StatelessWidget {
     return BlocProvider<ProductDetailBloc>(
       create: (context)=> s1()..add(GetDetailProduct(id!)),
       child: Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+          foregroundColor: Colors.black,
+          title: Text(
+            'Detail Products',
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),
+        ),
         body: _buildDetailBody(),
       ),
     );

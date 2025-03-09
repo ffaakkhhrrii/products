@@ -47,6 +47,8 @@ dependencies:
   bloc: ^9.0.0
   json_annotation: ^4.9.0
   go_router: ^14.8.1
+  flutter_expandable_fab: ^2.3.0
+  d_info: ^0.2.2
 
 dev_dependencies:
   flutter_test:

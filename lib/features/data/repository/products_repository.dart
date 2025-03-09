@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:products/core/resources/data_state.dart';
 import 'package:products/features/data/data_sources/remotes/products_api_service.dart';
+import 'package:products/features/data/models/post_request/add_product.dart';
+import 'package:products/features/data/models/post_response/basic_post_response.dart';
 import 'package:products/features/data/models/products_response.dart';
 import 'package:products/features/domain/entities/product_data.dart';
 import 'package:products/features/domain/repository/iproducts_repository.dart';
@@ -47,6 +49,28 @@ class ProductsRepository implements IProductsRepository{
           type: DioExceptionType.badResponse,
           requestOptions: httpResponse.response.requestOptions
           ));
+      }
+    }on DioException catch(e){
+      return DataFailed(e);
+    }
+  }
+
+  @override
+  Future<DataState<BasicPostResponse>> addProduct(AddProductRequest request) async {
+    try{
+      final response = await _apiService.addProduct(request);
+      if(response.response.statusCode == HttpStatus.created){
+        final data = response.data;
+        print("check data ${data}");
+        return DataSuccess(data);
+      }else{
+        print("check data error ${response.response.statusCode}");
+        return DataFailed(DioException(
+          error: response.response.statusMessage,
+          response: response.response,
+          type: DioExceptionType.badResponse,
+          requestOptions: response.response.requestOptions
+        ));
       }
     }on DioException catch(e){
       return DataFailed(e);

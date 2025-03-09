@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
 import 'package:go_router/go_router.dart';
 import 'package:products/core/router/router_app.dart';
 import 'package:products/core/utils/format.dart';
@@ -18,6 +19,24 @@ class ProductsList extends StatelessWidget {
       create: (context)=> s1()..add(const GetProducts()),
       child: Scaffold(
         body: _buildBody(),
+        floatingActionButton: ExpandableFab(
+          distance: 50,
+          type: ExpandableFabType.up,
+          children: [
+          FloatingActionButton.small(
+            heroTag: null,
+            child: const Icon(Icons.add),
+            onPressed: () {
+              context.push('/post_product');
+            },
+          ),
+          FloatingActionButton.small(
+            heroTag: null,
+            child: const Icon(Icons.search),
+            onPressed: () {},
+          ),
+        ]),
+        floatingActionButtonLocation: ExpandableFab.location,
       )
     );
   }
