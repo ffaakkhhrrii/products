@@ -11,7 +11,10 @@ abstract class ProductsApiService {
   factory ProductsApiService(Dio dio) = _ProductsApiService;
 
   @GET("products")
-  Future<HttpResponse<ProductsResponse>> getAllProducts();
+  Future<HttpResponse<ProductsResponse>> getAllProducts(
+    @Query("limit") int limit,
+    @Query("skip") int skip
+  );
 
   @GET("products/{id}")
   Future<HttpResponse<Product>> getDetailProduct(@Path("id") int id);

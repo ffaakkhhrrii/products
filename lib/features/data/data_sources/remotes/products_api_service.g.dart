@@ -24,9 +24,15 @@ class _ProductsApiService implements ProductsApiService {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<HttpResponse<ProductsResponse>> getAllProducts() async {
+  Future<HttpResponse<ProductsResponse>> getAllProducts(
+    int limit,
+    int skip,
+  ) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'limit': limit,
+      r'skip': skip,
+    };
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<HttpResponse<ProductsResponse>>(Options(

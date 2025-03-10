@@ -6,7 +6,7 @@ import 'package:products/features/domain/entities/favorite_data.dart';
 import 'package:products/features/domain/entities/product_data.dart';
 
 abstract class ProductInteractor{
-    Future<DataState<List<ProductData>>> getAllProducts();
+    Future<DataState<List<ProductData>>> getAllProducts(int limit, int skip);
     Future<DataState<ProductData>> getDetailProduct(int id);
     Future<DataState<BasicPostResponse>> addProduct(AddProductRequest request);
     Future<DataState<int>> addFavorite(FavoriteData favorite);

@@ -5,10 +5,11 @@ import 'package:products/features/domain/entities/product_data.dart';
 abstract class ProductsState extends Equatable {
   final List<ProductData>? products;
   final DioException? error;
-  const ProductsState({this.error,this.products});
+  final bool? hasMaxReached;
+  const ProductsState({this.error,this.products,this.hasMaxReached});
 
   @override
-  List<Object> get props => [products!,error!];
+  List<Object?> get props => [products,error,hasMaxReached];
 }
 
 class ProductsLoading extends ProductsState{
@@ -16,7 +17,7 @@ class ProductsLoading extends ProductsState{
 }
 
 class ProductsSuccess extends ProductsState{
-  const ProductsSuccess(List<ProductData> data): super(products: data);
+  const ProductsSuccess(List<ProductData> data,bool hasMaxReached): super(products: data,hasMaxReached: hasMaxReached);
 }
 
 class ProductsError extends ProductsState{

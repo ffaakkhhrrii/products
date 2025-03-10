@@ -10,14 +10,31 @@ import 'package:products/features/presentation/bloc/products/products_event.dart
 import 'package:products/features/presentation/bloc/products/products_state.dart';
 import 'package:products/injection_app.dart';
 
-class ProductsList extends StatelessWidget {
+class ProductsList extends StatefulWidget {
   const ProductsList({super.key});
 
   @override
+  State<ProductsList> createState() => _ProductsListState();
+}
+
+class _ProductsListState extends State<ProductsList> {
+  late ScrollController _scrollController;
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController = ScrollController()..addListener(_onScroll);
+  }
+
+  void _onScroll(){
+    if(_scrollController.position.pixels >= _scrollController.position.maxScrollExtent - 200){
+      context.read<ProductsBloc>().add(const LoadMoreProducts());
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return BlocProvider<ProductsBloc>(
-      create: (context)=> s1()..add(const GetProducts()),
-      child: Scaffold(
+    return Scaffold(
         body: _buildBody(),
         floatingActionButton: ExpandableFab(
           distance: 50,
@@ -39,7 +56,6 @@ class ProductsList extends StatelessWidget {
           ),
         ]),
         floatingActionButtonLocation: ExpandableFab.location,
-      )
     );
   }
 
@@ -56,8 +72,12 @@ class ProductsList extends StatelessWidget {
 
       if(state is ProductsSuccess){
         return ListView.builder(
-          itemCount: state.products!.length,
+          controller: _scrollController,
+          itemCount: state.hasMaxReached! ? state.products!.length : state.products!.length + 1,
           itemBuilder: (context,index){
+            if (index >= state.products!.length) {
+              return const Center(child: CircularProgressIndicator());
+            }
             ProductData products = state.products![index];
             return  Padding(
               padding: const EdgeInsets.fromLTRB(16, 10, 16, 10),

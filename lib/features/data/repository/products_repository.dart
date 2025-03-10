@@ -18,9 +18,9 @@ class ProductsRepository implements IProductsRepository{
   ProductsRepository({required this.apiService,required this.database});
   
   @override
-  Future<DataState<List<ProductData>>> getAllProducts() async {
+  Future<DataState<List<ProductData>>> getAllProducts(int limit, int skip) async {
     try{
-      final httpResponse = await apiService.getAllProducts();
+      final httpResponse = await apiService.getAllProducts(limit,skip);
       if(httpResponse.response.statusCode == HttpStatus.ok){
         final List<Product> response = httpResponse.data.products;
         final productList = response.map((product) => product.toEntity()).toList();

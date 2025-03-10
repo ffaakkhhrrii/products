@@ -13,8 +13,8 @@ class ProductUsecase implements ProductInteractor{
   ProductUsecase(this.productsRepository);
 
   @override
-  Future<DataState<List<ProductData>>> getAllProducts() {
-    return productsRepository.getAllProducts();
+  Future<DataState<List<ProductData>>> getAllProducts(int limit, int skip) {
+    return productsRepository.getAllProducts(limit,skip);
   }
 
   @override
