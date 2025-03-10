@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:products/core/constants/constants.dart';
+import 'package:products/features/data/data_sources/local/db/app_database.dart';
 import 'package:products/features/data/data_sources/remotes/products_api_service.dart';
 import 'package:products/features/data/repository/products_repository.dart';
 import 'package:products/features/domain/usecase/products/product_usecase.dart';
@@ -19,9 +20,14 @@ Future<void> initializeDependencies() async{
   
   s1.registerSingleton<Dio>(dio);
 
+  s1.registerSingleton<AppDatabase>(AppDatabase());
+
   s1.registerSingleton<ProductsApiService>(ProductsApiService(s1()));
 
-  s1.registerSingleton<ProductsRepository>(ProductsRepository(s1()));
+  s1.registerSingleton<ProductsRepository>(ProductsRepository(
+    apiService: s1(),
+    database: s1()
+  ));
 
   s1.registerSingleton<ProductUsecase>(ProductUsecase(s1()));
 

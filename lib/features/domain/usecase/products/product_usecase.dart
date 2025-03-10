@@ -2,6 +2,7 @@ import 'package:products/core/resources/data_state.dart';
 import 'package:products/features/data/models/post_request/add_product.dart';
 import 'package:products/features/data/models/post_response/basic_post_response.dart';
 import 'package:products/features/data/repository/products_repository.dart';
+import 'package:products/features/domain/entities/favorite_data.dart';
 import 'package:products/features/domain/entities/product_data.dart';
 import 'package:products/features/domain/usecase/products/product_interactor.dart';
 
@@ -23,6 +24,21 @@ class ProductUsecase implements ProductInteractor{
   @override
   Future<DataState<BasicPostResponse>> addProduct(AddProductRequest request) {
     return productsRepository.addProduct(request);
+  }
+
+  @override
+  Future<DataState<int>> addFavorite(FavoriteData favorite) {
+    return productsRepository.addFavorite(favorite);
+  }
+  
+  @override
+  Future<DataState<int>> deleteFavorite(int productId) {
+    return productsRepository.deleteFavorite(productId);
+  }
+  
+  @override
+  Future<DataState<bool>> isFavorite(int productId) {
+    return productsRepository.isFavorite(productId);
   }
 
 }
