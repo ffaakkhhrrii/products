@@ -34,7 +34,7 @@ class ProductsList extends StatelessWidget {
             heroTag: null,
             child: const Icon(Icons.favorite),
             onPressed: () {
-              
+              context.push('/favorite_product');
             },
           ),
         ]),

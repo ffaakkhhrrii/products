@@ -26,9 +26,9 @@ class _ProductDetailState extends State<ProductDetail> {
           elevation: 0,
           backgroundColor: Colors.transparent,
           foregroundColor: Colors.black,
-          title: Text(
+          title: const Text(
             'Detail Products',
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
           actions: [
             BlocConsumer<ProductDetailBloc,ProductDetailState>(
@@ -44,9 +44,9 @@ class _ProductDetailState extends State<ProductDetail> {
               listener: (context,state){
                 if(state is FavoriteActionSuccess){
                   if(state.isFavorite == true){
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Success")));
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Success")));
                   }else{
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Remove Success")));
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Remove Success")));
                   }
                 }
                 if(state is FavoriteActionError){
@@ -99,14 +99,14 @@ class _ProductDetailState extends State<ProductDetail> {
               const SizedBox(height: 30,),
               Text(
                 state.productData!.title,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w700,
                 ),
               ),
               Text(
                 state.productData!.description,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w400,
                 ),

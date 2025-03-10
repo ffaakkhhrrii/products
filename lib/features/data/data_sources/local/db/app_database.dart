@@ -35,6 +35,10 @@ class AppDatabase extends _$AppDatabase {
   Future<int> deleteFavorite(int productId){
     return (delete(favoriteEntity)..where((tb)=> tb.productId.equals(productId))).go();
   }
+
+  Future<int> deleteAllFavorite(){
+    return (delete(favoriteEntity).go());
+  }
 }
 
 LazyDatabase _openConnection(){

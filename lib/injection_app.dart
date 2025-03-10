@@ -6,6 +6,7 @@ import 'package:products/features/data/data_sources/remotes/products_api_service
 import 'package:products/features/data/repository/products_repository.dart';
 import 'package:products/features/domain/usecase/products/product_usecase.dart';
 import 'package:products/features/presentation/bloc/add_product/add_product_bloc.dart';
+import 'package:products/features/presentation/bloc/favorite/favorite_list_page_bloc.dart';
 import 'package:products/features/presentation/bloc/product_detail/product_detail_bloc.dart';
 import 'package:products/features/presentation/bloc/products/products_bloc.dart';
 
@@ -36,4 +37,6 @@ Future<void> initializeDependencies() async{
   s1.registerFactory<ProductDetailBloc>(()=>ProductDetailBloc(s1()));
   
   s1.registerFactory<AddProductBloc>(()=>AddProductBloc(s1()));
+
+  s1.registerFactory<FavoriteListPageBloc>(()=>FavoriteListPageBloc(s1()));
 }

@@ -109,5 +109,25 @@ class ProductsRepository implements IProductsRepository{
       return DataFailed(e);
     }
   }
+  
+  @override
+  Future<DataState<List<Favorite>>> getAllFavoriteProduct() async {
+    try{
+      final data = await database.getAllFavorite();
+      return DataSuccess(data);
+    }on DioException catch(e){
+      return DataFailed(e);
+    }
+  }
+  
+  @override
+  Future<DataState<int>> deleteAllFavorite() async {
+    try{
+      final delete = await database.deleteAllFavorite();
+      return DataSuccess(delete);
+    }on DioException catch(e){
+      return DataFailed(e);
+    }
+  }
 
 }
